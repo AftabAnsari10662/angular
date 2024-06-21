@@ -1,16 +1,26 @@
-import {verifyNoBrowserErrors} from '@angular/platform-browser/testing_e2e';
+/**
+ * @license
+ * Copyright Google LLC All Rights Reserved.
+ *
+ * Use of this source code is governed by an MIT-style license that can be
+ * found in the LICENSE file at https://angular.io/license
+ */
+
+import {verifyNoBrowserErrors} from '@angular/dev-infra-private/bazel/benchmark/driver-utilities';
+import {browser, by, element} from 'protractor';
 
 describe('Zippy Component', function() {
-
   afterEach(verifyNoBrowserErrors);
 
   describe('zippy', function() {
-    var URL = 'all/playground/src/zippy_component/index.html';
+    const URL = '/';
 
-    beforeEach(function() { browser.get(URL); });
+    beforeEach(function() {
+      browser.get(URL);
+    });
 
     it('should change the zippy title depending on it\'s state', function() {
-      var zippyTitle = element(by.css('.zippy__title'));
+      const zippyTitle = element(by.css('.zippy__title'));
 
       expect(zippyTitle.getText()).toEqual('▾ Details');
       zippyTitle.click();
